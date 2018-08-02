@@ -340,9 +340,7 @@ export default {
             if (!this.isResizable || !this.active) {
                 return
             }
-            if (ev.shiftKey) {
-              this.aspectRatio = true;
-            }
+            console.log(ev);
             this.stickDrag = true;
             this.stickStartPos.mouseX = ev.pageX || ev.touches[0].pageX;
             this.stickStartPos.mouseY = ev.pageY || ev.touches[0].pageY;
