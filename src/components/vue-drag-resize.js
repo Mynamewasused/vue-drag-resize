@@ -137,7 +137,7 @@ export default {
             rawRight: null,
             rawBottom: null,
             zIndex: this.z,
-            aspectFactor: this.rawWidth / this.rawHeight,
+            aspectFactor: this.w / this.h,
             parentWidth: null,
             parentHeight: null,
             left: this.x,
