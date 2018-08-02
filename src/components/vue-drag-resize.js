@@ -517,7 +517,7 @@ export default {
             const right = this.right;
             const width = this.width;
             const height = this.height;
-            const aspectFactor = this.width / this.height;
+            const aspectFactor = this.aspectFactor;
             const currentStick = this.currentStick;
 
             if (width / height > aspectFactor) {
