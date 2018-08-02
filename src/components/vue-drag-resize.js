@@ -138,6 +138,7 @@ export default {
             rawBottom: null,
             zIndex: this.z,
             aspectFactor: this.w / this.h,
+            tempAspectFactor: this.w / this.h,
             parentWidth: null,
             parentHeight: null,
             left: this.x,
@@ -343,6 +344,7 @@ export default {
             }
             if (ev.shiftKey) {
               this.localAspectRatio = true
+              this.tempAspectFactor = this.rawWidth / this.rawHeight
             } else {
               this.localAspectRatio = this.aspectRatio
             }
@@ -517,7 +519,7 @@ export default {
             const right = this.right;
             const width = this.width;
             const height = this.height;
-            const aspectFactor = this.aspectFactor;
+            const aspectFactor = this.tempAspectFactor;
             const currentStick = this.currentStick;
 
             if (width / height > aspectFactor) {
