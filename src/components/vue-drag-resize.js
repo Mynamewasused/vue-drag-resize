@@ -128,7 +128,6 @@ export default {
 
     data: function () {
         return {
-            aspectRatio: this.aspectRatio,
             active: this.isActive,
             rawWidth: this.w,
             rawHeight: this.h,
