@@ -128,7 +128,7 @@ export default {
 
     data: function () {
         return {
-            localAspectRatio: this.aspectRatio,
+            aspectRatio: this.aspectRatio,
             active: this.isActive,
             rawWidth: this.w,
             rawHeight: this.h,
@@ -138,7 +138,7 @@ export default {
             rawBottom: null,
             zIndex: this.z,
             aspectFactor: this.w / this.h,
-            tempAspectFactor: this.w / this.h,
+            aspectFactor: this.w / this.h,
             parentWidth: null,
             parentHeight: null,
             left: this.x,
@@ -342,12 +342,7 @@ export default {
             if (!this.isResizable || !this.active) {
                 return
             }
-            if (ev.shiftKey) {
-              this.localAspectRatio = true
-              this.tempAspectFactor = this.rawWidth / this.rawHeight
-            } else {
-              this.localAspectRatio = this.aspectRatio
-            }
+
             this.stickDrag = true;
             this.stickStartPos.mouseX = ev.pageX || ev.touches[0].pageX;
             this.stickStartPos.mouseY = ev.pageY || ev.touches[0].pageY;
@@ -393,7 +388,7 @@ export default {
 
             const parentLim = this.parentLimitation ? 0 : null;
 
-            if (this.localAspectRatio) {
+            if (this.aspectRatio) {
                 if (minw / minh > aspectFactor) {
                     minh = minw / aspectFactor;
                 } else {
@@ -412,7 +407,7 @@ export default {
                 maxBottom: bottom + (height - minh)
             };
 
-            if (this.localAspectRatio) {
+            if (this.aspectRatio) {
                 const aspectLimits = {
                     minLeft: left - (Math.min(top, bottom) * aspectFactor) * 2,
                     maxLeft: left + ((((height - minh) / 2) * aspectFactor) * 2),
@@ -509,7 +504,7 @@ export default {
         },
 
         aspectRatioCorrection() {
-            if (!this.localAspectRatio) {
+            if (!this.aspectRatio) {
                 return
             }
 
@@ -519,7 +514,7 @@ export default {
             const right = this.right;
             const width = this.width;
             const height = this.height;
-            const aspectFactor = this.tempAspectFactor;
+            const aspectFactor = this.aspectFactor;
             const currentStick = this.currentStick;
 
             if (width / height > aspectFactor) {
@@ -588,7 +583,7 @@ export default {
             const limits = this.limits;
             const stickAxis = this.stickAxis;
             const aspectFactor = this.aspectFactor;
-            const aspectRatio = this.localAspectRatio;
+            const aspectRatio = this.aspectRatio;
             const left = this.left;
             const bottom = this.bottom;
             const top = this.top;
@@ -612,7 +607,7 @@ export default {
             const limits = this.limits;
             const stickAxis = this.stickAxis;
             const aspectFactor = this.aspectFactor;
-            const aspectRatio = this.localAspectRatio;
+            const aspectRatio = this.aspectRatio;
             const right = this.right;
             const bottom = this.bottom;
             const top = this.top;
@@ -636,7 +631,7 @@ export default {
             const limits = this.limits;
             const stickAxis = this.stickAxis;
             const aspectFactor = this.aspectFactor;
-            const aspectRatio = this.localAspectRatio;
+            const aspectRatio = this.aspectRatio;
             const right = this.right;
             const left = this.left;
             const top = this.top;
@@ -660,7 +655,7 @@ export default {
             const limits = this.limits;
             const stickAxis = this.stickAxis;
             const aspectFactor = this.aspectFactor;
-            const aspectRatio = this.localAspectRatio;
+            const aspectRatio = this.aspectRatio;
             const right = this.right;
             const left = this.left;
             const bottom = this.bottom;
