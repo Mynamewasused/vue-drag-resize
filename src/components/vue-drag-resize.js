@@ -544,7 +544,7 @@ export default {
             };
             const vStartVect = new Vector(this.stickStartPos.mouseX - this.center.x, this.stickStartPos.mouseY - this.center.y)
             const vEndVect = new Vector(newPos.x - this.center.x, newPos.y - this.center.y)
-            this.rotation = vEndVect.angleDeg() - vStartVect.angleDeg()
+            this.rotation = this.rotation + vEndVect.angleDeg() - vStartVect.angleDeg()
         },
 
         getCenter(x, y, stick) {
