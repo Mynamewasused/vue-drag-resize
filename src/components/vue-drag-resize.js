@@ -550,15 +550,17 @@ export default {
                 y: ev.pageY
             };
 
-            console.log(centerX)
-            console.log(centerY)
             const P12 = this.distance(centerX, stickStartPos.mouseX, centerY, stickStartPos.mouseY)
             const P13 = this.distance(centerX, newPos.x, centerY, newPos.y)
             const P23 = this.distance(stickStartPos.mouseX, newPos.x, stickStartPos.mouseY, newPos.y)
 
-            console.log(P12)
-            console.log(P13)
-            console.log(P23)
+
+            console.log('center: (' + centerX + ', ' + centerY + ')')
+            console.log('start: (' + stickStartPos.mouseX + ', ' + stickStartPos.mouseY + ')')
+            console.log('now: (' + newPos.x + ', ' + newPos.y + ')')
+            console.log('dist 12: ' + P12)
+            console.log('dist 13: ' + P13)
+            console.log('dist 23: ' + P23)
 
             const numerator = P12 ^ 2 + P13 ^ 2 - P23 ^ 2
             const denominator = 2 * P12 * P13
