@@ -301,8 +301,8 @@ export default {
 
             this.bodyDrag = true;
 
-            this.stickStartPos.mouseX = ev.pageX || ev.touches[0].pageX;
-            this.stickStartPos.mouseY = ev.pageY || ev.touches[0].pageY;
+            this.stickStartPos.mouseX = ev.pageX;
+            this.stickStartPos.mouseY = ev.pageY;
 
             this.stickStartPos.left = this.left;
             this.stickStartPos.right = this.right;
@@ -369,8 +369,8 @@ export default {
             }
 
             this.stickDrag = true;
-            this.stickStartPos.mouseX = ev.pageX || ev.touches[0].pageX;
-            this.stickStartPos.mouseY = ev.pageY || ev.touches[0].pageY;
+            this.stickStartPos.mouseX = ev.pageX;
+            this.stickStartPos.mouseY = ev.pageY;
             this.stickStartPos.left = this.left;
             this.stickStartPos.right = this.right;
             this.stickStartPos.top = this.top;
@@ -472,8 +472,8 @@ export default {
             const stickStartPos = this.stickStartPos;
 
             const delta = {
-                x: (stickStartPos.mouseX - (ev.pageX || ev.touches[0].pageX)) / this.parentScaleX,
-                y: (stickStartPos.mouseY - (ev.pageY || ev.touches[0].pageY)) / this.parentScaleY
+                x: (stickStartPos.mouseX - (ev.pageX)) / this.parentScaleX,
+                y: (stickStartPos.mouseY - (ev.pageY)) / this.parentScaleY
             };
 
             switch (this.currentStick[0]) {
@@ -530,8 +530,8 @@ export default {
         
         rotateDown: function(ev) {
             this.rotateDrag = true
-            this.stickStartPos.mouseX = ev.pageX || ev.touches[0].pageX;
-            this.stickStartPos.mouseY = ev.pageY || ev.touches[0].pageY;
+            this.stickStartPos.mouseX = ev.pageX;
+            this.stickStartPos.mouseY = ev.pageY;
             this.stickStartPos.left = this.left;
             this.stickStartPos.right = this.right;
             this.stickStartPos.top = this.top;
@@ -555,6 +555,9 @@ export default {
 
             const numerator = P12 ^ 2 + P13 ^ 2 - P23 ^ 2
             const denominator = 2 * P12 * P13
+            console.log('center: (' + this.centerX + ', ' + this.centerY + ')')
+            console.log('clicked: (' + this.stickStartPos.X + ', ' + this.stickStartPos.Y + ')')
+            console.log('at: (' + newPos.X + ', ' + newPos.Y + ')')
             console.log('rotation: ' + Math.acos(numerator / denominator) * 360 / Math.PI )
         },
 
@@ -639,8 +642,8 @@ export default {
                     width: `${stickSize / this.parentScaleX}px`,
                     height: `${stickSize / this.parentScaleY}px`,
                 };
-                rotateStyle[styleMapping.y[rotate[0]]] = `${stickSize / this.parentScaleX / -6}px`;
-                rotateStyle[styleMapping.x[rotate[1]]] = `${stickSize / this.parentScaleX / -6}px`;
+                rotateStyle[styleMapping.y[rotate[0]]] = `${stickSize / this.parentScaleX / +8}px`;
+                rotateStyle[styleMapping.x[rotate[1]]] = `${stickSize / this.parentScaleX / +8}px`;
                 return rotateStyle;
             }
         },
