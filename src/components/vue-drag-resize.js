@@ -564,7 +564,7 @@ export default {
 
             const numerator = Math.pow(P12, 2) + Math.pow(P13, 2) - Math.pow(P23, 2)
             const denominator = 2 * P12 * P13
-            console.log('rotation: ' + numerator / denominator)
+            console.log('rotation: ' + (Math.acos(numerator / denominator) * 360 / Math.PI))
         },
 
         distance(x1, x2, y1, y2) {
