@@ -537,8 +537,8 @@ export default {
             this.stickStartPos.top = this.top;
             this.stickStartPos.bottom = this.bottom;
             this.rotation = 0;
-            this.centerX = (this.left + this.width / 2);
-            this.centerY = (this.top + this.height / 2);
+            this.centerX = (this.left + (this.right - this.left) / 2);
+            this.centerY = (this.top + (this.bottom - this.top) / 2);
         },
 
         rotateMove(ev) {
@@ -550,6 +550,8 @@ export default {
                 y: ev.pageY
             };
 
+            console.log(centerX)
+            console.log(centerY)
             const P12 = this.distance(centerX, stickStartPos.mouseX, centerY, stickStartPos.mouseY)
             const P13 = this.distance(centerX, newPos.x, centerY, newPos.y)
             const P23 = this.distance(stickStartPos.mouseX, newPos.x, stickStartPos.mouseY, newPos.y)
