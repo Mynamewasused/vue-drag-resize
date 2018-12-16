@@ -562,7 +562,7 @@ export default {
             console.log('dist 13: ' + P13)
             console.log('dist 23: ' + P23)
 
-            const numerator = P12 ^ 2 + P13 ^ 2 - P23 ^ 2
+            const numerator = Math.pow(P12, 2) + Math.pow(P13, 2) - Math.pow(P23, 2)
             const denominator = 2 * P12 * P13
             console.log('rotation: ' + numerator / denominator)
         },
