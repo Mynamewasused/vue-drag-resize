@@ -74,10 +74,7 @@ export default {
         },
         r: {
             type: Number,
-            default: 0,
-            validator: function (val) {
-                return (val >= 0 && val < 360)
-            }
+            default: 0
         },        
         minw: {
             type: Number,
@@ -544,7 +541,7 @@ export default {
             };
             const vStartVect = new Vector(this.stickStartPos.mouseX - this.center.x, this.stickStartPos.mouseY - this.center.y)
             const vEndVect = new Vector(newPos.x - this.center.x, newPos.y - this.center.y)
-            this.rotation = this.stickStartPos.rotation + vEndVect.angleDeg() - vStartVect.angleDeg()
+            this.rotation = vEndVect.angleDeg() - vStartVect.angleDeg()
         },
 
         getCenter(x, y, stick) {
