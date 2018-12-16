@@ -532,7 +532,9 @@ export default {
             this.stickStartPos.mouseX = ev.pageX;
             this.stickStartPos.mouseY = ev.pageY;
             this.center = this.getCenter(ev.pageX, ev.pageY, rotate)
-            console.lov(this.center)
+            console.log(this.stickStartPos.mouseX)
+            console.log(this.stickStartPos.mouseY)
+            console.log(this.center)
         },
 
         rotateMove(ev) {
