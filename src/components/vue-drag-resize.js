@@ -528,7 +528,8 @@ export default {
             this.$emit('resizestop', this.rect);
         },
         
-        rotateDown: function(ev) {
+        rotateDown(ev) {
+            console.log('down', ev)
             this.rotateDrag = true
             this.stickStartPos.mouseX = ev.pageX;
             this.stickStartPos.mouseY = ev.pageY;
@@ -556,7 +557,7 @@ console.log(ev)
             const numerator = P12 ^ 2 + P13 ^ 2 - P23 ^ 2
             const denominator = 2 * P12 * P13
             console.log('center: (' + this.centerX + ', ' + this.centerY + ')')
-            console.log('clicked: (' + stickStartPos.mouseX, + ', ' + stickStartPos.mouseX, + ')')
+            console.log('clicked: (' + stickStartPos.mouseX, + ', ' + stickStartPos.mouseY, + ')')
             console.log('at: (' + newPos.x + ', ' + newPos.y + ')')
             console.log('rotation: ' + Math.acos(numerator / denominator) * 360 / Math.PI )
         },
