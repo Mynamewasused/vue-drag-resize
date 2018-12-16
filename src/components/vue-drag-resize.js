@@ -554,17 +554,10 @@ export default {
             const P13 = this.distance(centerX, newPos.x, centerY, newPos.y)
             const P23 = this.distance(stickStartPos.mouseX, newPos.x, stickStartPos.mouseY, newPos.y)
 
-
-            console.log('center: (' + centerX + ', ' + centerY + ')')
-            console.log('start: (' + stickStartPos.mouseX + ', ' + stickStartPos.mouseY + ')')
-            console.log('now: (' + newPos.x + ', ' + newPos.y + ')')
-            console.log('dist 12: ' + P12)
-            console.log('dist 13: ' + P13)
-            console.log('dist 23: ' + P23)
-
             const numerator = Math.pow(P12, 2) + Math.pow(P13, 2) - Math.pow(P23, 2)
             const denominator = 2 * P12 * P13
             console.log('rotation: ' + (Math.acos(numerator / denominator) * 360 / Math.PI))
+            this.r = (Math.acos(numerator / denominator) * 360 / Math.PI)
         },
 
         distance(x1, x2, y1, y2) {
