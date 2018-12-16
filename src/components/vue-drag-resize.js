@@ -550,9 +550,9 @@ export default {
                 y: ev.pageY
             };
 
-            const P12 = this.distance(centerX / 1000, stickStartPos.mouseX / 1000, centerY / 1000, stickStartPos.mouseY / 1000)
-            const P13 = this.distance(centerX / 1000, newPos.x / 1000, centerY / 1000, newPos.y / 1000)
-            const P23 = this.distance(stickStartPos.mouseX / 1000, newPos.x / 1000, stickStartPos.mouseY / 1000, newPos.y / 1000)
+            const P12 = this.distance(centerX, stickStartPos.mouseX, centerY, stickStartPos.mouseY)
+            const P13 = this.distance(centerX, newPos.x, centerY, newPos.y)
+            const P23 = this.distance(stickStartPos.mouseX, newPos.x, stickStartPos.mouseY, newPos.y)
 
 
             console.log('center: (' + centerX + ', ' + centerY + ')')
