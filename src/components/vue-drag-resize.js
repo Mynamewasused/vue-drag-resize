@@ -537,8 +537,8 @@ export default {
             this.stickStartPos.top = this.top;
             this.stickStartPos.bottom = this.bottom;
             this.rotation = this.r;
-            this.centerX = (this.left + this.width() / 2);
-            this.centerY = (this.top + this.height() / 2);
+            this.centerX = (this.left + this.width / 2);
+            this.centerY = (this.top + this.height / 2);
         },
 
         rotateMove(ev) {
