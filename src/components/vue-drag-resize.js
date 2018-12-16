@@ -636,8 +636,8 @@ export default {
         vdrRotate() {
             return (rotate) => {
                 const rotateStyle = {
-                    width: `${rotateSize / this.parentScaleX}px`,
-                    height: `${rotateSize / this.parentScaleY}px`,
+                    width: `${stickSize / this.parentScaleX}px`,
+                    height: `${stickSize / this.parentScaleY}px`,
                 };
                 rotateStyle[styleMapping.y[rotate[0]]] = `${stickSize / this.parentScaleX / -6}px`;
                 rotateStyle[styleMapping.x[rotate[1]]] = `${stickSize / this.parentScaleX / -6}px`;
