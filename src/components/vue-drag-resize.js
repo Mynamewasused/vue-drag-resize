@@ -550,9 +550,9 @@ export default {
                 y: ev.pageY
             };
 
-            const P12 = this.distance(centerX, stickStartPos.mouseX, centerY, stickStartPos.mouseY)
-            const P13 = this.distance(centerX, newPos.x, centerY, newPos.y)
-            const P23 = this.distance(stickStartPos.mouseX, newPos.x, stickStartPos.mouseY, newPos.y)
+            const P12 = this.distance(centerX / 1000, stickStartPos.mouseX / 1000, centerY / 1000, stickStartPos.mouseY / 1000)
+            const P13 = this.distance(centerX / 1000, newPos.x / 1000, centerY / 1000, newPos.y / 1000)
+            const P23 = this.distance(stickStartPos.mouseX / 1000, newPos.x / 1000, stickStartPos.mouseY / 1000, newPos.y / 1000)
 
 
             console.log('center: (' + centerX + ', ' + centerY + ')')
@@ -567,7 +567,7 @@ export default {
             console.log('rotation: ' + numerator / denominator)
         },
 
-        distance(x1, y1, x2, y2) {
+        distance(x1, x2, y1, y2) {
             return Math.sqrt((x1 - x2)^2 + (y1 - y2)^2)
         },
 
