@@ -544,7 +544,7 @@ export default {
             };
             const vStartVect = new Vector(this.stickStartPos.mouseX - this.center.x, this.stickStartPos.mouseY - this.center.y)
             const vEndVect = new Vector(newPos.x - this.center.x, newPos.y - this.center.y)
-            this.rotation = this.rotation + vEndVect.angleDeg() - vStartVect.angleDeg()
+            this.rotation = vEndVect.angleDeg() - vStartVect.angleDeg()
         },
 
         getCenter(x, y, stick) {
@@ -553,13 +553,13 @@ export default {
             let additionalAngle = 0
             switch(stick) {
                 case 'tl':
-                    additionalAngle = -45
+                    additionalAngle = 45
                     break;
                 case 'tm':
-                    additionalAngle = -90
+                    additionalAngle = 90
                     break;
                 case 'tr':
-                    additionalAngle = -135
+                    additionalAngle = 135
                     break;
                 case 'ml':
                     additionalAngle = 0
@@ -568,13 +568,13 @@ export default {
                     additionalAngle = 180
                     break;
                 case 'bl':
-                    additionalAngle = 45
+                    additionalAngle = -45
                     break;
                 case 'bm':
-                    additionalAngle = 90
+                    additionalAngle = -90
                     break;
                 case 'br':
-                    additionalAngle = 135
+                    additionalAngle = -135
                     break;
             }
             let vAdd = new Vector(dist, 0)
