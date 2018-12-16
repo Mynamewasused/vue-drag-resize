@@ -186,6 +186,7 @@ export default {
         };
 
         this.currentStick = [];
+        this.currentRotate = [];
     },
 
     mounted: function () {
@@ -528,7 +529,7 @@ export default {
             this.$emit('resizestop', this.rect);
         },
         
-        rotateDown(ev) {
+        rotateDown(rotate, ev) {
             this.rotateDrag = true
             this.stickStartPos.mouseX = ev.pageX;
             this.stickStartPos.mouseY = ev.pageY;
@@ -537,12 +538,25 @@ export default {
             this.stickStartPos.top = this.top;
             this.stickStartPos.bottom = this.bottom;
             this.rotation = this.r;
-            this.centerX = (this.left + this.width / 2);
-            this.centerY = (this.top + this.height / 2);
-            console.log('width: ' + this.width)
-            console.log('height: ' + this.height)
-            console.log('lrtb: ', this.left, this.right, this.top, this.bottom)
-            console.log('clicked: ' + ev.pageX, ' ' + ev.pageY)
+            console.log(this.rawLeft)
+            console.log(this.rawTop)
+            this.currentRotate = rotate.split('');
+            switch(this.currentRotate[0]) {
+                case 't':
+                    this.centerY = (ev.pageY + this.height / 2);
+                    break;
+                case 'b':
+                    this.centerY = (ev.pageY - this.height / 2);
+                    break;
+            }
+            switch(this.currentRotate[1]) {
+                case 'l':
+                    this.centerX = (ev.pageX + this.width / 2);
+                    break;
+                case 'r':
+                    this.centerY = (ev.pageX - this.width / 2);
+                    break;
+            }
         },
 
         rotateMove(ev) {
