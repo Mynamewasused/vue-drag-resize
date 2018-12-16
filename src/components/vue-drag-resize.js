@@ -561,10 +561,7 @@ export default {
         },
 
         distance(x1, x2, y1, y2) {
-            console.log('calc distance for (' + x1 + ', ' + x2 + '), (' + y1 + ', ' + y2 + ')' )
-            console.log('square1:' + Math.pow((x1 - x2), 2) )
-            console.log('square2:' + Math.pow((y1 - y2), 2) )
-            console.log('total:' + Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2) )
+            console.log('calc distance for (' + x1 + ', ' + y1 + '), (' + x2 + ', ' + y2 + ')' )
             console.log('sqrt: ' + Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)))
             return Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2))
         },
