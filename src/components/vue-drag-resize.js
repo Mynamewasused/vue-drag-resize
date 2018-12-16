@@ -529,8 +529,6 @@ export default {
         },
         
         rotateDown(ev) {
-            console.log('down', ev)
-            console.log(ev)
             this.rotateDrag = true
             this.stickStartPos.mouseX = ev.pageX;
             this.stickStartPos.mouseY = ev.pageY;
@@ -545,7 +543,6 @@ export default {
 
         rotateMove(ev) {
             const stickStartPos = this.stickStartPos;
-console.log(ev)
             const newPos = {
                 x: ev.pageX,
                 y: ev.pageY
@@ -557,10 +554,7 @@ console.log(ev)
 
             const numerator = P12 ^ 2 + P13 ^ 2 - P23 ^ 2
             const denominator = 2 * P12 * P13
-            console.log('center: (' + this.centerX + ', ' + this.centerY + ')')
-            console.log('clicked: (' + stickStartPos.mouseX + ', ' + stickStartPos.mouseY + ')')
-            console.log('at: (' + newPos.x + ', ' + newPos.y + ')')
-            console.log('rotation: ' + Math.acos(numerator / denominator) * 360 / Math.PI )
+            console.log('rotation: ' + numerator / denominator)
         },
 
         distance(x1, y1, x2, y2) {
