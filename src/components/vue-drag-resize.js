@@ -585,8 +585,12 @@ export default {
                     break;
             }
             let vAdd = new Vector(dist, 0)
+            console.log('dist: ' + dist)
+            console.log('rotating ' + (this.rotation + additionalAngle) + ' degrees')
             vAdd.rotateByDeg(this.rotation + additionalAngle)
+            console.log('vAdd: ', vAdd)
             vTemp.add(vAdd)
+            console.log('result: ', vTemp)
             return vTemp
         },
 
