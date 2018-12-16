@@ -541,23 +541,23 @@ export default {
             this.centerY = (this.top + this.height / 2);
         },
 
-        rotateMove: function(ev) {
+        rotateMove(ev) {
             const stickStartPos = this.stickStartPos;
-
+console.log(ev)
             const newPos = {
-                x: ev.pageX || ev.touches[0].pageX,
-                y: ev.pageY || ev.touches[0].pageY
+                x: ev.pageX,
+                y: ev.pageY
             };
 
             const P12 = this.distance(this.centerX, stickStartPos.mouseX, this.centerY, stickStartPos.mouseY)
-            const P13 = this.distance(this.centerX, newPos.X, this.centerY, newPos.Y)
-            const P23 = this.distance(stickStartPos.mouseX, newPos.X, stickStartPos.mouseY, newPos.Y)
+            const P13 = this.distance(this.centerX, newPos.x, this.centerY, newPos.y)
+            const P23 = this.distance(stickStartPos.mouseX, newPos.x, stickStartPos.mouseY, newPos.y)
 
             const numerator = P12 ^ 2 + P13 ^ 2 - P23 ^ 2
             const denominator = 2 * P12 * P13
             console.log('center: (' + this.centerX + ', ' + this.centerY + ')')
-            console.log('clicked: (' + this.stickStartPos.X + ', ' + this.stickStartPos.Y + ')')
-            console.log('at: (' + newPos.X + ', ' + newPos.Y + ')')
+            console.log('clicked: (' + stickStartPos.mouseX, + ', ' + stickStartPos.mouseX, + ')')
+            console.log('at: (' + newPos.x + ', ' + newPos.y + ')')
             console.log('rotation: ' + Math.acos(numerator / denominator) * 360 / Math.PI )
         },
 
