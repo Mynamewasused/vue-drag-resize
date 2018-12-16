@@ -568,6 +568,11 @@ export default {
         },
 
         distance(x1, x2, y1, y2) {
+            console.log('calc distance for (' + x1 + ', ' + x2 + '), (' + y1 + ', ' + y2 + ')' )
+            console.log('square1:' + (x1 - x2)^2 )
+            console.log('square2:' + (y1 - y2)^2 )
+            console.log('total:' + (x1 - x2)^2 + (y1 - y2)^2 )
+            console.log('sqrt: ' + Math.sqrt((x1 - x2)^2 + (y1 - y2)^2))
             return Math.sqrt((x1 - x2)^2 + (y1 - y2)^2)
         },
 
