@@ -560,13 +560,13 @@ export default {
             let additionalAngle = 0
             switch(stick) {
                 case 'tl':
-                    additionalAngle = 45
+                    additionalAngle = Math.atan((this.width / 2) / (this.height) / 2)
                     break;
                 case 'tm':
                     additionalAngle = 90
                     break;
                 case 'tr':
-                    additionalAngle = 135
+                    additionalAngle = 180 - Math.atan((this.width / 2) / (this.height) / 2)
                     break;
                 case 'ml':
                     additionalAngle = 0
@@ -575,13 +575,13 @@ export default {
                     additionalAngle = 180
                     break;
                 case 'bl':
-                    additionalAngle = -45
+                    additionalAngle = -Math.atan((this.height / 2) / (this.width) / 2)
                     break;
                 case 'bm':
                     additionalAngle = -90
                     break;
                 case 'br':
-                    additionalAngle = -135
+                    additionalAngle = Math.atan((this.height / 2) / (this.width) / 2) - 180
                     break;
             }
             let vAdd = new Vector(dist, 0)
