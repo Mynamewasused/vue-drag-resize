@@ -539,6 +539,10 @@ export default {
             this.rotation = this.r;
             this.centerX = (this.left + this.width / 2);
             this.centerY = (this.top + this.height / 2);
+            console.log('width: ' + this.width)
+            console.log('height: ' + this.height)
+            console.log('lrtb: ', this.left, this.right, this.top, this.bottom)
+            console.log('clicked: ' + ev.pageX, ' ' + ev.pageY)
         },
 
         rotateMove(ev) {
@@ -556,13 +560,10 @@ export default {
 
             const numerator = Math.pow(P12, 2) + Math.pow(P13, 2) - Math.pow(P23, 2)
             const denominator = 2 * P12 * P13
-            console.log('rotation: ' + (Math.acos(numerator / denominator) * 360 / Math.PI))
             this.r = this.rotation - (Math.acos(numerator / denominator) * 360 / Math.PI)
         },
 
         distance(x1, x2, y1, y2) {
-            console.log('calc distance for (' + x1 + ', ' + y1 + '), (' + x2 + ', ' + y2 + ')' )
-            console.log('sqrt: ' + Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2)))
             return Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2))
         },
 
