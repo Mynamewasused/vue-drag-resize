@@ -552,13 +552,17 @@ export default {
             const P13 = this.distance(this.centerX, newPos.x, this.centerY, newPos.y)
             const P23 = this.distance(stickStartPos.mouseX, newPos.x, stickStartPos.mouseY, newPos.y)
 
+            console.log(P12)
+            console.log(P13)
+            console.log(P23)
+
             const numerator = P12 ^ 2 + P13 ^ 2 - P23 ^ 2
             const denominator = 2 * P12 * P13
             console.log('rotation: ' + numerator / denominator)
         },
 
         distance(x1, y1, x2, y2) {
-            return Math.sqrt((x1 - x2)^2 + (y1 - y2) ^2)
+            return Math.sqrt((x1 - x2)^2 + (y1 - y2)^2)
         },
 
         rotateUp() {
