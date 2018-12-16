@@ -15,8 +15,8 @@
         v-for="rotate in rotates"
         class="vdr-rotate"
         :class="['vdr-rotate-' + rotate, isRotatable ? '' : 'not-rotatable']"
-        @mousedown.stop.prevent="rotateDown(rotate, $event)"
-        @touchstart.stop.prevent="rotateDown(rotate, $event)"
+        @mousedown.stop.prevent="rotateDown($event)"
+        @touchstart.stop.prevent="rotateDown($event)"
         :style="vdrRotate(rotate)">
     </div>
 
