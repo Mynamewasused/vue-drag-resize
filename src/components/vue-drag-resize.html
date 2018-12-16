@@ -11,5 +11,13 @@
             @touchstart.stop.prevent="stickDown(stick, $event)"
             :style="vdrStick(stick)">
     </div>
+    <div
+        v-for="rotate in rotates"
+        class="vdr-rotate"
+        :class="['vdr-rotate-' + rotate, isRotatable ? '' : 'not-rotatable']"
+        @mousedown.stop.prevent="rotateDown(rotate, $event)"
+        @touchstart.stop.prevent="rotateDown(rotate, $event)"
+        :style="vdrRotate(rotate)">
+    </div>
 
 </div>

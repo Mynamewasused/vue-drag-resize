@@ -33,6 +33,9 @@ export default {
         isResizable: {
             type: Boolean, default: true
         },
+        isRotatable: {
+            type: Boolean, default: true
+        },
         aspectRatio: {
             type: Boolean, default: false
         },
@@ -67,6 +70,13 @@ export default {
                 return val > 0
             }
         },
+        r: {
+            type: Number,
+            default: 0,
+            validator: function (val) {
+                return (val >= 0 && val < 360)
+            }
+        },        
         minw: {
             type: Number,
             default: 50,
@@ -117,6 +127,12 @@ export default {
                 return ['tl', 'tm', 'tr', 'mr', 'br', 'bm', 'bl', 'ml']
             }
         },
+        rotates: {
+            type: Array,
+            default: function () {
+                return ['tl', 'tr', 'br', 'bl']
+            }
+        },
         axis: {
             type: String,
             default: 'both',
@@ -144,6 +160,9 @@ export default {
             top: this.y,
             right: null,
             bottom: null,
+            centerX: null,
+            centerY: null,
+            rotation: this.r,
             minWidth: this.minw,
             minHeight: this.minh
         }
@@ -152,6 +171,7 @@ export default {
     created: function () {
         this.stickDrag = false;
         this.bodyDrag = false;
+        this.rotateDrag = false;
         this.stickAxis = null;
         this.stickStartPos = {mouseX: 0, mouseY: 0, x: 0, y: 0, w: 0, h: 0};
         this.limits = {
@@ -222,7 +242,7 @@ export default {
         },
 
         move(ev) {
-            if (!this.stickDrag && !this.bodyDrag) {
+            if (!this.stickDrag && !this.bodyDrag && !this.rotateDrag) {
                 return
             }
 
@@ -234,6 +254,9 @@ export default {
             if (this.bodyDrag) {
                 this.bodyMove(ev)
             }
+            if (this.rotateDrag) {
+                this.rotateMove(ev)
+            }
         },
 
         up(ev) {
@@ -242,6 +265,9 @@ export default {
             }
             if (this.bodyDrag) {
                 this.bodyUp(ev)
+            }
+            if (this.rotateDrag) {
+                this.rotateUp(ev)
             }
         },
 
@@ -501,6 +527,53 @@ export default {
             this.$emit('resizing', this.rect);
             this.$emit('resizestop', this.rect);
         },
+        
+        rotateDown: function(ev) {
+            this.rotateDrag = true
+            this.stickStartPos.mouseX = ev.pageX || ev.touches[0].pageX;
+            this.stickStartPos.mouseY = ev.pageY || ev.touches[0].pageY;
+            this.stickStartPos.left = this.left;
+            this.stickStartPos.right = this.right;
+            this.stickStartPos.top = this.top;
+            this.stickStartPos.bottom = this.bottom;
+            this.rotation = 0;
+            this.centerX = (this.left + this.width / 2);
+            this.centerY = (this.top + this.height / 2);
+        },
+
+        rotateMove: function(ev) {
+            const stickStartPos = this.stickStartPos;
+
+            const newPos = {
+                x: ev.pageX || ev.touches[0].pageX,
+                y: ev.pageY || ev.touches[0].pageY
+            };
+
+            const P12 = this.distance(this.centerX, stickStartPos.mouseX, this.centerY, stickStartPos.mouseY)
+            const P13 = this.distance(this.centerX, newPos.X, this.centerY, newPos.Y)
+            const P23 = this.distance(stickStartPos.mouseX, newPos.X, stickStartPos.mouseY, newPos.Y)
+
+            const numerator = P12 ^ 2 + P13 ^ 2 - P23 ^ 2
+            const denominator = 2 * P12 * P13
+            console.log('rotation: ' + Math.acos(numerator / denominator) * 360 / Math.PI )
+        },
+
+        distance(x1, y1, x2, y2) {
+            return Math.sqrt((x1 - x2)^2 + (y1 - y2) ^2)
+        },
+
+        rotateUp() {
+            this.rotateDrag = false
+            this.$emit('rotatestop', this.rect)
+            this.stickStartPos = {
+                mouseX: 0,
+                mouseY: 0,
+                x: 0,
+                y: 0,
+                w: 0,
+                h: 0
+            };
+        },
 
         aspectRatioCorrection() {
             if (!this.aspectRatio) {
@@ -543,7 +616,8 @@ export default {
                 left: this.left + 'px',
                 width: this.width + 'px',
                 height: this.height + 'px',
-                zIndex: this.zIndex
+                zIndex: this.zIndex,
+                transform: 'rotate(' + this.r + 'deg)'
             }
         },
 
@@ -556,6 +630,18 @@ export default {
                 stickStyle[styleMapping.y[stick[0]]] = `${stickSize / this.parentScaleX / -2}px`;
                 stickStyle[styleMapping.x[stick[1]]] = `${stickSize / this.parentScaleX / -2}px`;
                 return stickStyle;
+            }
+        },
+
+        vdrRotate() {
+            return (rotate) => {
+                const rotateStyle = {
+                    width: `${rotateSize / this.parentScaleX}px`,
+                    height: `${rotateSize / this.parentScaleY}px`,
+                };
+                rotateStyle[styleMapping.y[rotate[0]]] = `${stickSize / this.parentScaleX / -6}px`;
+                rotateStyle[styleMapping.x[rotate[1]]] = `${stickSize / this.parentScaleX / -6}px`;
+                return rotateStyle;
             }
         },
 

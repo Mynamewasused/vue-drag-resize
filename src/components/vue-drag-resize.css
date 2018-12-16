@@ -1,6 +1,7 @@
 .vdr {
     position: absolute;
     box-sizing: border-box;
+    transform: rotate(0deg);
 }
 .vdr.active:before{
     content: '';
@@ -12,6 +13,7 @@
     box-sizing: border-box;
     outline: 1px dashed #d6d6d6;
 }
+
 .vdr-stick {
     box-sizing: border-box;
     position: absolute;
@@ -20,17 +22,33 @@
     border: 1px solid #6c6c6c;
     box-shadow: 0 0 2px #bbb;
 }
+
+.vdr-rotate {
+    box-sizing: border-box;
+    position: absolute;
+    font-size: 1px;
+    background: #ffffff;
+    border: 1px solid #6c6c6c;
+    box-shadow: 0 0 2px #bbb;
+    cursor: grab;
+}
+
 .inactive .vdr-stick {
     display: none;
 }
-.vdr-stick-tl, .vdr-stick-br {
+
+.inactive .vdr-rotate {
+    display: none;
+}
+
+.vdr-stick-tl, .vdr-stick-br, .vdr-rotate-tr, .vdr-rotate-bl {
     cursor: nwse-resize;
 }
 .vdr-stick-tm, .vdr-stick-bm {
     left: 50%;
     cursor: ns-resize;
 }
-.vdr-stick-tr, .vdr-stick-bl {
+.vdr-stick-tr, .vdr-stick-bl, .vdr-rotate-tl, .vdr-rotate-br {
     cursor: nesw-resize;
 }
 .vdr-stick-ml, .vdr-stick-mr {
@@ -38,5 +56,9 @@
     cursor: ew-resize;
 }
 .vdr-stick.not-resizable{
+    display: none;
+}
+
+.vdr-rotate.not-rotatable{
     display: none;
 }
