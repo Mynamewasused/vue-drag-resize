@@ -169,5 +169,8 @@
     "last 2 versions",
     "not ie <= 9"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "victor": "^1.1.0"
+  }
 }

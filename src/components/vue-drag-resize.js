@@ -12,6 +12,8 @@ const styleMapping = {
   }
 };
 
+import Vector from 'victor'
+
 export default {
     name: 'vue-drag-resize',
     props: {
@@ -160,8 +162,7 @@ export default {
             top: this.y,
             right: null,
             bottom: null,
-            centerX: null,
-            centerY: null,
+            center: null,
             rotation: this.r,
             minWidth: this.minw,
             minHeight: this.minh
@@ -533,52 +534,53 @@ export default {
             this.rotateDrag = true
             this.stickStartPos.mouseX = ev.pageX;
             this.stickStartPos.mouseY = ev.pageY;
-            this.stickStartPos.left = this.left;
-            this.stickStartPos.right = this.right;
-            this.stickStartPos.top = this.top;
-            this.stickStartPos.bottom = this.bottom;
-            this.rotation = this.r;
-            console.log(this.rawLeft)
-            console.log(this.rawTop)
-            this.currentRotate = rotate.split('');
-            switch(this.currentRotate[0]) {
-                case 't':
-                    this.centerY = (ev.pageY + this.height / 2);
-                    break;
-                case 'b':
-                    this.centerY = (ev.pageY - this.height / 2);
-                    break;
-            }
-            switch(this.currentRotate[1]) {
-                case 'l':
-                    this.centerX = (ev.pageX + this.width / 2);
-                    break;
-                case 'r':
-                    this.centerY = (ev.pageX - this.width / 2);
-                    break;
-            }
+            this.center = this.getCenter(ev.pageX, ev.pageY, rotate)
         },
 
         rotateMove(ev) {
-            const stickStartPos = this.stickStartPos;
-            const centerX = this.centerX
-            const centerY = this.centerY
             const newPos = {
                 x: ev.pageX,
                 y: ev.pageY
             };
-
-            const P12 = this.distance(centerX, stickStartPos.mouseX, centerY, stickStartPos.mouseY)
-            const P13 = this.distance(centerX, newPos.x, centerY, newPos.y)
-            const P23 = this.distance(stickStartPos.mouseX, newPos.x, stickStartPos.mouseY, newPos.y)
-
-            const numerator = Math.pow(P12, 2) + Math.pow(P13, 2) - Math.pow(P23, 2)
-            const denominator = 2 * P12 * P13
-            this.r = this.rotation - (Math.acos(numerator / denominator) * 360 / Math.PI)
+            const vStartVect = new Vector(this.stickStartPos.mouseX - this.center.x, this.stickStartPos.mouseY - this.center.y)
+            const vEndVect = new Vector(newPos.x - this.center.x, newPos.y - this.center.y)
+            this.rotation = this.stickStartPos.rotation + vEndVect.angleDeg() - vStartVect.angleDeg()
         },
 
-        distance(x1, x2, y1, y2) {
-            return Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2))
+        getCenter(x, y, stick) {
+            let vTemp = new Vector(x, y)
+            let dist = Math.hypot(this.width / 2, this.height / 2)
+            let additionalAngle = 0
+            switch(stick) {
+                case 'tl':
+                    additionalAngle = -45
+                    break;
+                case 'tm':
+                    additionalAngle = -90
+                    break;
+                case 'tr':
+                    additionalAngle = -135
+                    break;
+                case 'ml':
+                    additionalAngle = 0
+                    break;
+                case 'mr':
+                    additionalAngle = 180
+                    break;
+                case 'bl':
+                    additionalAngle = 45
+                    break;
+                case 'bm':
+                    additionalAngle = 90
+                    break;
+                case 'br':
+                    additionalAngle = 135
+                    break;
+            }
+            let vAdd = new Vector(dist, 0)
+            vAdd.rotateByDeg(this.rotation + additionalAngle)
+            vTemp.add(vAdd)
+            return vTemp
         },
 
         rotateUp() {
@@ -636,7 +638,7 @@ export default {
                 width: this.width + 'px',
                 height: this.height + 'px',
                 zIndex: this.zIndex,
-                transform: 'rotate(' + this.r + 'deg)'
+                transform: 'rotate(' + this.rotation + 'deg)'
             }
         },
 
