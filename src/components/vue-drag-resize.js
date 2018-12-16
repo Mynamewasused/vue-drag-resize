@@ -543,13 +543,15 @@ export default {
 
         rotateMove(ev) {
             const stickStartPos = this.stickStartPos;
+            const centerX = this.centerX
+            const centerY = this.centerY
             const newPos = {
                 x: ev.pageX,
                 y: ev.pageY
             };
 
-            const P12 = this.distance(this.centerX, stickStartPos.mouseX, this.centerY, stickStartPos.mouseY)
-            const P13 = this.distance(this.centerX, newPos.x, this.centerY, newPos.y)
+            const P12 = this.distance(centerX, stickStartPos.mouseX, centerY, stickStartPos.mouseY)
+            const P13 = this.distance(centerX, newPos.x, centerY, newPos.y)
             const P23 = this.distance(stickStartPos.mouseX, newPos.x, stickStartPos.mouseY, newPos.y)
 
             console.log(P12)
