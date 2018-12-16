@@ -366,10 +366,13 @@ export default {
             if (!this.isResizable || !this.active) {
                 return
             }
-
+            this.center = this.getCenter(ev.pageX, ev.pageY, stick)
+            let tempVect = new Vector(ev.pageX - this.center.x, ev.pageY - this.center.y)
+            tempVect.rotateDeg(-this.rotation)
+            tempVect.add(this.center)
+            this.stickStartPos.mouseX = tempVect.x
+            this.stickStartPos.mouseY = tempVect.y
             this.stickDrag = true;
-            this.stickStartPos.mouseX = ev.pageX;
-            this.stickStartPos.mouseY = ev.pageY;
             this.stickStartPos.left = this.left;
             this.stickStartPos.right = this.right;
             this.stickStartPos.top = this.top;
@@ -470,9 +473,13 @@ export default {
         stickMove(ev) {
             const stickStartPos = this.stickStartPos;
 
+            let tempVect = new Vector(ev.pageX - this.center.x, ev.pageY - this.center.y)
+            tempVect.rotateDeg(-this.rotation)
+            tempVect.add(this.center)
+
             const delta = {
-                x: (stickStartPos.mouseX - (ev.pageX)) / this.parentScaleX,
-                y: (stickStartPos.mouseY - (ev.pageY)) / this.parentScaleY
+                x: (stickStartPos.mouseX - (tempVect.x)) / this.parentScaleX,
+                y: (stickStartPos.mouseY - (tempVect.y)) / this.parentScaleY
             };
 
             switch (this.currentStick[0]) {
