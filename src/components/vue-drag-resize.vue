@@ -465,9 +465,6 @@ import Vector from 'victor'
   box-sizing: border-box;
   position: absolute;
   font-size: 1px;
-  background: #ffffff;
-  border: 1px solid #6c6c6c;
-  box-shadow: 0 0 2px #bbb;
   cursor: grab;
 }
 
