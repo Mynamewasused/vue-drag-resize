@@ -304,7 +304,11 @@ import Vector from 'victor'
         const vStartVect = new Vector(this.startPos.mouseX - this.startPos.rotationalCenter.x, this.startPos.mouseY - this.startPos.rotationalCenter.y)
         const vEndVect = new Vector(newPos.x - this.startPos.rotationalCenter.x, newPos.y - this.startPos.rotationalCenter.y)
         this.rotation = this.startPos.rotation + vEndVect.angleDeg() - vStartVect.angleDeg()
-        this.rcutoffs = 'r' + Math.trunc(((this.rotation + 22.5 ) % 360) / 45) * 45
+        let tempAng = Math.trunc(((this.rotation + 22.5 ) % 360) / 45) * -45
+        if (tempAng < 0) {
+            tempAng = tempAng + 360
+        }
+        this.rcutoffs = 'r' + tempAng
       },
       stickMove (ev) {
         let delta = {
@@ -419,7 +423,11 @@ import Vector from 'victor'
       },
       r () {
         this.rotation = this.r
-        this.rcutoffs = 'r' + Math.trunc(((this.rotation + 22.5 ) % 360) / 45) * 45
+        let tempAng = Math.trunc(((this.rotation + 22.5 ) % 360) / 45) * -45
+        if (tempAng < 0) {
+            tempAng = tempAng + 360
+        }
+        this.rcutoffs = 'r' + tempAng
       }
     }
   }
