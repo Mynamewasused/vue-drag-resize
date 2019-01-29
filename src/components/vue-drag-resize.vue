@@ -117,8 +117,7 @@ import Vector from 'victor'
         active: this.isActive,
         width: this.w,
         height: this.h,
-        top:  this.center.y - this.height / 2,
-        left: this.center.x + - this.width / 2,
+
         rotation: this.r,
         center: {
           x: this.x,
@@ -127,10 +126,16 @@ import Vector from 'victor'
       }
     },
     computed: {
+      top () {
+          return this.center.y - this.height / 2
+      },
+      left () {
+          return this.center.x + - this.width / 2
+      },
       style () {
         return {
-          top: this.center.y - this.height / 2 + 'px',
-          left: this.center.x + - this.width / 2 + 'px',
+          top: this.top + 'px',
+          left: this.left + 'px',
           width: this.width + 'px',
           height: this.height + 'px',
           color: 'white',
