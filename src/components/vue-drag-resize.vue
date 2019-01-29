@@ -436,6 +436,7 @@ import Vector from 'victor'
   left: 0;
   box-sizing: border-box;
   outline: 1px dashed #d6d6d6;
+  cursor: move;
 }
 
 .vdr-stick {
@@ -465,14 +466,14 @@ import Vector from 'victor'
   display: none;
 }
 
-.vdr-stick-tl, .vdr-stick-br, .vdr-rotate-rtr, .vdr-rotate-rbl {
+.vdr-stick-tl, .vdr-stick-br {
   cursor: nwse-resize;
 }
 .vdr-stick-tm, .vdr-stick-bm {
   left: 50%;
   cursor: ns-resize;
 }
-.vdr-stick-tr, .vdr-stick-bl, .vdr-rotate-rtl, .vdr-rotate-rbr {
+.vdr-stick-tr, .vdr-stick-bln{
   cursor: nesw-resize;
 }
 .vdr-stick-ml, .vdr-stick-mr {
