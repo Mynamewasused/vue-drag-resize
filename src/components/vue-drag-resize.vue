@@ -158,6 +158,14 @@ import Vector from 'victor'
           rotateStyle[styleMapping.x[rotate[2]]] = `${-stickSize - 5}px`
           return rotateStyle;
         }
+      },
+      rect() {
+        return {
+          left: Math.round(this.left),
+          top: Math.round(this.top),
+          width: Math.round(this.width),
+          height: Math.round(this.height)
+        }
       }
     },
     created: function () {
@@ -271,6 +279,7 @@ import Vector from 'victor'
         }
         this.center.x = this.startPos.x - delta.x
         this.center.y = this.startPos.y - delta.y
+        this.$emit('dragging', this.rect)
       },
       rotateMove (ev) {
         const newPos = {
@@ -320,6 +329,8 @@ import Vector from 'victor'
       bodyUp () {
         this.bodyDrag = false
         this.stickStartPos = {mouseX: 0, mouseY: 0, x: 0, y: 0, w: 0, h: 0}
+        this.$emit('dragging', this.rect);
+        this.$emit('dragstop', this.rect);
       },
       rotateUp () {
         this.rotateDrag = false
