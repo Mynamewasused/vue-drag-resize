@@ -8,7 +8,7 @@
       v-for="stick in sticks"
       v-bind:key="stick"
       class="vdr-stick"
-      :class="['vdr-stick-' + stick, isResizable ? '' : 'not-resizable']"
+      :class="['vdr-stick-' + stick, isResizable ? '' : 'not-resizable', rcutoffs]"
       @mousedown.stop.prevent="stickDown(stick, $event)"
       @touchstart.stop.prevent="stickDown(stick, $event)"
       :style="vdrStick(stick)">
@@ -17,7 +17,7 @@
       v-for="rotate in rotates"
       v-bind:key="rotate"
       class="vdr-rotate"
-      :class="['vdr-rotate-' + rotate, isRotatable ? '' : 'not-rotatable']"
+      :class="['vdr-rotate-' + rotate, isRotatable ? '' : 'not-rotatable', rcutoffs]"
       @mousedown.stop.prevent="rotateDown(rotate, $event)"
       @touchstart.stop.prevent="rotateDown(rotate, $event)"
       :style="vdrRotate(rotate)">
@@ -121,7 +121,8 @@ import Vector from 'victor'
         center: {
           x: this.x,
           y: this.y
-        }
+        },
+        rcutoffs: 'r0'
       }
     },
     computed: {
@@ -417,6 +418,7 @@ import Vector from 'victor'
       },
       r () {
         this.rotation = this.r
+        this.rcutoffs = 'r' + Math.trunc(((this.rotation + 22.5 ) % 360) / 45) * 45
       }
     }
   }
@@ -473,13 +475,29 @@ import Vector from 'victor'
   left: 50%;
   cursor: ns-resize;
 }
-.vdr-stick-tr, .vdr-stick-bln{
+.vdr-stick-tr, .vdr-stick-bl{
   cursor: nesw-resize;
 }
 .vdr-stick-ml, .vdr-stick-mr {
   top: 50%;
   cursor: ew-resize;
 }
+.vdr-stick-ml.r45, .vdr-stick-mr.r45, .vdr-stick-ml.r225, .vdr-stick-mr.r225 {
+    cursor: nesw-resize;
+} 
+
+.vdr-stick-ml.r90, .vdr-stick-mr.r90, .vdr-stick-ml.r270, .vdr-stick-mr.r270 {
+    cursor: ns-resize;
+}
+
+.vdr-stick-ml.r135, .vdr-stick-mr.r135, .vdr-stick-ml.r315, .vdr-stick-mr.r315 {
+    cursor: nwse-resize;
+} 
+
+.vdr-stick-ml.r180, .vdr-stick-mr.r180 {
+    cursor: ew-resize;
+} 
+
 .vdr-stick.not-resizable{
   display: none;
 }
