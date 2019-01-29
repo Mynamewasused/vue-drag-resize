@@ -117,7 +117,6 @@ import Vector from 'victor'
         active: this.isActive,
         width: this.w,
         height: this.h,
-
         rotation: this.r,
         center: {
           x: this.x,
