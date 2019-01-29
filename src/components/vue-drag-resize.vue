@@ -304,10 +304,11 @@ import Vector from 'victor'
         const vStartVect = new Vector(this.startPos.mouseX - this.startPos.rotationalCenter.x, this.startPos.mouseY - this.startPos.rotationalCenter.y)
         const vEndVect = new Vector(newPos.x - this.startPos.rotationalCenter.x, newPos.y - this.startPos.rotationalCenter.y)
         this.rotation = this.startPos.rotation + vEndVect.angleDeg() - vStartVect.angleDeg()
-        let tempAng = Math.trunc(((this.rotation + 22.5 ) % 360) / 45) * -45
+        let tempAng = this.rotation
         if (tempAng < 0) {
             tempAng = tempAng + 360
         }
+        tempAng = Math.trunc(((tempAng + 22.5 ) % 360) / 45) * 45
         this.rcutoffs = 'r' + tempAng
       },
       stickMove (ev) {
@@ -423,10 +424,11 @@ import Vector from 'victor'
       },
       r () {
         this.rotation = this.r
-        let tempAng = Math.trunc(((this.rotation + 22.5 ) % 360) / 45) * -45
+        let tempAng = this.rotation
         if (tempAng < 0) {
             tempAng = tempAng + 360
         }
+        tempAng = Math.trunc(((tempAng + 22.5 ) % 360) / 45) * 45
         this.rcutoffs = 'r' + tempAng
       }
     }
@@ -491,7 +493,7 @@ import Vector from 'victor'
   top: 50%;
   cursor: ew-resize;
 }
-.vdr-stick-ml.r45, .vdr-stick-mr.r45, .vdr-stick-ml.r225, .vdr-stick-mr.r225 {
+.vdr-stick-ml.r135, .vdr-stick-mr.r135, .vdr-stick-ml.r315, .vdr-stick-mr.r315 {
     cursor: nesw-resize;
 } 
 
@@ -499,7 +501,7 @@ import Vector from 'victor'
     cursor: ns-resize;
 }
 
-.vdr-stick-ml.r135, .vdr-stick-mr.r135, .vdr-stick-ml.r315, .vdr-stick-mr.r315 {
+.vdr-stick-ml.r45, .vdr-stick-mr.r45, .vdr-stick-ml.r225, .vdr-stick-mr.r225 {
     cursor: nwse-resize;
 } 
 
