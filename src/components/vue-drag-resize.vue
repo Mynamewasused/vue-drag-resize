@@ -493,19 +493,32 @@ import Vector from 'victor'
   top: 50%;
   cursor: ew-resize;
 }
-.vdr-stick-ml.r135, .vdr-stick-mr.r135, .vdr-stick-ml.r315, .vdr-stick-mr.r315 {
+
+.vdr-stick-ml.r135, .vdr-stick-mr.r135, .vdr-stick-ml.r315, .vdr-stick-mr.r315,
+.vdr-stick-tr.r180, .vdr-stick-bl.r190,
+.vdr-stick-tm.r45, .vdr-stick-bm.r45, .vdr-stick-tm.r225, .vdr-stick-bm.r225,
+.vdr-stick-tl.r90, .vdr-stick-br.r90, .vdr-stick-tl.r270, .vdr-stick-br.r270 {
     cursor: nesw-resize;
 } 
 
-.vdr-stick-ml.r90, .vdr-stick-mr.r90, .vdr-stick-ml.r270, .vdr-stick-mr.r270 {
+.vdr-stick-ml.r90, .vdr-stick-mr.r90, .vdr-stick-ml.r270, .vdr-stick-mr.r270,
+.vdr-stick-tr.r135, .vdr-stick-bl.r135, .vdr-stick-tr.r315, .vdr-stick-bl.r315,
+.vdr-stick-tm.r180, .vdr-stick-bm.r180,
+.vdr-stick-tl.r45, .vdr-stick-br.r45, .vdr-stick-tl.r225, .vdr-stick-br.r225 {
     cursor: ns-resize;
 }
 
-.vdr-stick-ml.r45, .vdr-stick-mr.r45, .vdr-stick-ml.r225, .vdr-stick-mr.r225 {
+.vdr-stick-ml.r45, .vdr-stick-mr.r45, .vdr-stick-ml.r225, .vdr-stick-mr.r225,
+.vdr-stick-tr.r90, .vdr-stick-bl.r90, .vdr-stick-tr.r270, .vdr-stick-bl.r270,
+.vdr-stick-tm.r135, .vdr-stick-bm.r135, .vdr-stick-tm.r315, .vdr-stick-bm.r315,
+.vdr-stick-tl.r180, .vdr-stick-br.r180 {
     cursor: nwse-resize;
 } 
 
-.vdr-stick-ml.r180, .vdr-stick-mr.r180 {
+.vdr-stick-ml.r180, .vdr-stick-mr.r180, 
+.vdr-stick-tr.r45, .vdr-stick-bl.r45, .vdr-stick-tr.r225, .vdr-stick-bl.r225,
+.vdr-stick-tm.r90, .vdr-stick-bm.r90, .vdr-stick-tm.r270, .vdr-stick-bm.r270,
+.vdr-stick-tl.r135, .vdr-stick-br.r135, .vdr-stick-tl.r315, .vdr-stick-br.r315 {
     cursor: ew-resize;
 } 
 
