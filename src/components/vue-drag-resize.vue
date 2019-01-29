@@ -161,8 +161,8 @@ import Vector from 'victor'
       },
       rect() {
         return {
-          left: Math.round(this.left),
-          top: Math.round(this.top),
+          left: Math.round(this.x),
+          top: Math.round(this.y),
           width: Math.round(this.width),
           height: Math.round(this.height)
         }
