@@ -117,8 +117,8 @@ import Vector from 'victor'
         active: this.isActive,
         width: this.w,
         height: this.h,
-        top: this.y,
-        left: this.x,
+        top:  this.center.y - this.height / 2,
+        left: this.center.x + - this.width / 2,
         rotation: this.r,
         center: {
           x: this.x,
@@ -161,8 +161,8 @@ import Vector from 'victor'
       },
       rect() {
         return {
-          left: Math.round(this.x),
-          top: Math.round(this.y),
+          left: Math.round(this.left),
+          top: Math.round(this.top),
           width: Math.round(this.width),
           height: Math.round(this.height)
         }
