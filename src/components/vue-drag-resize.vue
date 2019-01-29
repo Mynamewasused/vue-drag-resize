@@ -125,11 +125,21 @@ import Vector from 'victor'
       }
     },
     computed: {
-      top () {
-          return this.center.y - this.height / 2
+      top: {
+          get: function () {
+              return this.center.y - this.height / 2
+          },
+          set: function (newValue) {
+              this.center.y = newValue + this.height / 2
+          }
       },
-      left () {
-          return this.center.x + - this.width / 2
+      left: {
+          get: function () {
+              return this.center.x - this.width / 2
+          },
+          set: function (newValue) {
+              this.center.x = newValue + this.width / 2
+          }
       },
       style () {
         return {
