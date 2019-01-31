@@ -333,9 +333,9 @@ import Vector from 'victor'
         if (this.lockAspectRatio) {
             const initialAR = initialHeight / initialWidth
             if (yPrime / xPrime > initialAR) {
-                yPrime = xPrime * initialAR
-            } else {
                 xPrime = yPrime / initialAR
+            } else {
+                yPrime = xPrime * initialAR
             }
         }
         let newX = this.startPos.x
