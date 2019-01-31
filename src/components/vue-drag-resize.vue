@@ -316,11 +316,11 @@ import Vector from 'victor'
         this.rcutoffs = 'r' + tempAng
       },
       stickMove (ev) {
-        let initialWidth = this.width
+        let initialWidth = this.startPos.width
         if (initialWidth === 0) {
             initialWidth = 1
         }
-        let initialHeight = this.height
+        let initialHeight = this.startPos.height
         if (initialHeight === 0) {
             initialHeight = 1
         }
