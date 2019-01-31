@@ -332,21 +332,23 @@ import Vector from 'victor'
         let xPrime = (delta.x * Math.cos(-this.rotation * Math.PI / 180) - delta.y * Math.sin(-this.rotation * Math.PI / 180))
         if (this.lockAspectRatio) {
             const initialAR = initialHeight / initialWidth
-            if (yPrime / xPrime > initialAR) {
+            xPrime = - xPrime
+            if (Math.abs(yPrime / xPrime) > initialAR) {
                 console.log('y is larger')
                 console.log('old y: ' + yPrime)
                 console.log('old x: ' + xPrime)
                 console.log('AR: ' + initialAR)
-                xPrime = -yPrime / initialAR
+                xPrime = yPrime / initialAR
                 console.log('new x: ' + xPrime)
             } else {
                 console.log('x is larger')
                 console.log('old y: ' + yPrime)
                 console.log('old x: ' + xPrime)
                 console.log('AR: ' + initialAR)
-                yPrime = -xPrime * initialAR
+                yPrime = xPrime * initialAR
                 console.log('new y: ' + yPrime)
             }
+            xPrime = -xPrime
         }
         let newX = this.startPos.x
         let newY = this.startPos.y
