@@ -355,22 +355,38 @@ import Vector from 'victor'
         switch (this.currentStick[0]) {
           case 'b':
             this.height = this.startPos.height - yPrime
+            if (this.height < 0) {
+                this.height = 1
+                yPrime = this.startPos.height - 1
+            }
             newX = newX + (yPrime / 2) * Math.sin(this.rotation * Math.PI / 180)
             newY = newY - yPrime / 2 * Math.cos(this.rotation * Math.PI / 180)
             break;
           case 't':
             this.height = this.startPos.height + yPrime
+            if (this.height < 0) {
+                this.height = 1
+                yPrime = this.startPos.height - 1
+            }
             newX = newX + (yPrime / 2) * Math.sin(this.rotation * Math.PI / 180)
             newY = newY - yPrime / 2 * Math.cos(this.rotation * Math.PI / 180)
             break;
         }
         switch (this.currentStick[1]) {
           case 'r':
+            if (this.width < 0) {
+                this.width = 1
+                xPrime = this.startPos.width - 1
+            }
             this.width = this.startPos.width - xPrime
             newX = newX - (xPrime / 2) * Math.cos(this.rotation * Math.PI / 180)
             newY = newY - (xPrime / 2) * Math.sin(this.rotation * Math.PI / 180)
             break;
           case 'l':
+            if (this.width < 0) {
+                this.width = 1
+                xPrime = this.startPos.width - 1
+            }
             this.width = this.startPos.width + xPrime
             newX = newX - (xPrime / 2) * Math.cos(this.rotation * Math.PI / 180)
             newY = newY - (xPrime / 2) * Math.sin(this.rotation * Math.PI / 180)
