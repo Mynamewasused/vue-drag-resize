@@ -337,7 +337,7 @@ import Vector from 'victor'
                 console.log('old y: ' + yPrime)
                 console.log('old x: ' + xPrime)
                 console.log('AR: ' + initialAR)
-                xPrime = yPrime / initialAR
+                xPrime = -yPrime / initialAR
                 console.log('new x: ' + xPrime)
             } else {
                 console.log('x is larger')
