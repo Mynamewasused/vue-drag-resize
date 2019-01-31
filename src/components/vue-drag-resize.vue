@@ -102,6 +102,10 @@ import Vector from 'victor'
           return ['rtl', 'rtr', 'rbr', 'rbl']
         }
       },
+      lockAspectRatio: {
+          type: Boolean,
+          default: false
+      }
     },
     mounted () {
       document.documentElement.addEventListener('mousemove', this.move)
@@ -297,6 +301,8 @@ import Vector from 'victor'
         this.$emit('dragging', this.rect)
       },
       rotateMove (ev) {
+        const initialWidth = this.width
+        const initialHeight = this.height
         const newPos = {
           x: ev.pageX,
           y: ev.pageY
@@ -318,6 +324,14 @@ import Vector from 'victor'
         }
         let yPrime = (delta.y * Math.cos(-this.rotation * Math.PI / 180) + delta.x * Math.sin(-this.rotation * Math.PI / 180))
         let xPrime = (delta.x * Math.cos(-this.rotation * Math.PI / 180) - delta.y * Math.sin(-this.rotation * Math.PI / 180))
+        if (this.lockAspectRatio) {
+            const initialAR = initialHeight / initialWidth
+            if (yPrime / xPrime > initialAR) {
+                yPrime = xPrime * initialAR
+            } else {
+                xPrime = yPrime / initialAR
+            }
+        }
         let newX = this.startPos.x
         let newY = this.startPos.y
         switch (this.currentStick[0]) {
