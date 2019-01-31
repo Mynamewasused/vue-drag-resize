@@ -333,9 +333,19 @@ import Vector from 'victor'
         if (this.lockAspectRatio) {
             const initialAR = initialHeight / initialWidth
             if (yPrime / xPrime > initialAR) {
+                console.log('y is larger')
+                console.log('old y: ' + yPrime)
+                console.log('old x: ' + xPrime)
+                console.log('AR: ' + initialAR)
                 xPrime = yPrime / initialAR
+                console.log('new x: ' + xPrime)
             } else {
+                console.log('x is larger')
+                console.log('old y: ' + yPrime)
+                console.log('old x: ' + xPrime)
+                console.log('AR: ' + initialAR)
                 yPrime = xPrime * initialAR
+                console.log('new y: ' + yPrime)
             }
         }
         let newX = this.startPos.x
