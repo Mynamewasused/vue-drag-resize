@@ -344,7 +344,7 @@ import Vector from 'victor'
                 console.log('old y: ' + yPrime)
                 console.log('old x: ' + xPrime)
                 console.log('AR: ' + initialAR)
-                yPrime = xPrime * initialAR
+                yPrime = -xPrime * initialAR
                 console.log('new y: ' + yPrime)
             }
         }
