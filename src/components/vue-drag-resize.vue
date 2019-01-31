@@ -301,8 +301,6 @@ import Vector from 'victor'
         this.$emit('dragging', this.rect)
       },
       rotateMove (ev) {
-        const initialWidth = this.width
-        const initialHeight = this.height
         const newPos = {
           x: ev.pageX,
           y: ev.pageY
@@ -318,6 +316,14 @@ import Vector from 'victor'
         this.rcutoffs = 'r' + tempAng
       },
       stickMove (ev) {
+        let initialWidth = this.width
+        if (initialWidth === 0) {
+            initialWidth = 1
+        }
+        let initialHeight = this.height
+        if (initialHeight === 0) {
+            initialHeight = 1
+        }
         let delta = {
           x: this.startPos.mouseX - ev.pageX,
           y: this.startPos.mouseY - ev.pageY
